@@ -90,7 +90,7 @@ float calculateScore(const Ligand &ligand) {
 bool compareLigands(const Ligand &a, const Ligand &b) {
     return a.score < b.score;
 }
-void classifyLigands(const std::vector<Ligand>& ligands,std::vector<Ligand> &smallGroup, std::vector<Ligand> &mediumGroup,std::vector<Ligand> & largeGroup, std::vector<Ligand> &extraLargeGroup, std::vector<Ligand> &overflowGroup) {
+void classifyLigands(const std::vector<Ligand>& ligands,std::vector<Ligand> &smallGroup, std::vector<Ligand> &mediumGroup,std::vector<Ligand> & largeGroup, std::vector<Ligand> &extraLargeGroup, std::vector<Ligand> &maxGroup) {
     const int atomThresholds[5] = {40, 80, 120, 160, 300};
     const int torsionThresholds[5] = {8, 16, 24, 36, 48};
     const int rigidThresholds[5] = {12, 24, 36, 64, 128};
@@ -115,7 +115,7 @@ void classifyLigands(const std::vector<Ligand>& ligands,std::vector<Ligand> &sma
                    lig.num_lig_pairs <= pairThresholds[4]) {
             maxGroup.push_back(lig);
         } else {
-            overflowGroup.push_back(lig);
+            //TODO: Implement logic for ligands that does not match any group
         }
     }
 }
