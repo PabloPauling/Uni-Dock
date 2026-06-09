@@ -90,7 +90,7 @@ float calculateScore(const Ligand &ligand) {
 bool compareLigands(const Ligand &a, const Ligand &b) {
     return a.score < b.score;
 }
-void classifyLigands(const std::vector<Ligand>& ligands,std::vector<Ligand> &smallGroup, std::vector<Ligand> &mediumGroup,std::vector<Ligand> & largeGroup, std::vector<Ligand> &extraLargeGroup, std::vector<Ligand> &overflowGroup) {
+void classifyLigands(const std::vector<Ligand>& ligands,std::vector<Ligand> &smallGroup, std::vector<Ligand> &mediumGroup,std::vector<Ligand> & largeGroup, std::vector<Ligand> &extraLargeGroup, std::vector<Ligand> &maxGroup, std::vector<Ligand> &overflowGroup) {
     const int atomThresholds[5] = {40, 80, 120, 160, 300};
     const int torsionThresholds[5] = {8, 16, 24, 36, 48};
     const int rigidThresholds[5] = {12, 24, 36, 64, 128};
@@ -1038,7 +1038,8 @@ bug reporting, license agreements, and more information.      \n";
                 std::vector<Ligand> largeGroup;
                 std::vector<Ligand> extraLargeGroup;
                 std::vector<Ligand> maxGroup;
-                classifyLigands(ligands,smallGroup,mediumGroup,largeGroup,extraLargeGroup,maxGroup);
+                std::vector<Ligand> overflowGroup;
+                classifyLigands(ligands,smallGroup,mediumGroup,largeGroup,extraLargeGroup,maxGroup,overflowGroup);
                 std::cout << "Small Group:" << std::endl;
                 printMaxValues(smallGroup);
                 
